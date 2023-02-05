@@ -57,19 +57,25 @@ def level_5_pw_check(user_pw):
     user_pw_hash = hash_pw(user_pw)
 
     if( user_pw_hash == correct_pw_hash ):
-        print("Newly added: correct pw is {}".format(user_pw))
+        print("Newly added: correct pw is {}".format(user_pw))  # Added this to show password
         print("Welcome back... your flag, user:")
         decryption = str_xor(flag_enc.decode(), user_pw)
         print(decryption)
-        return True
-    # print("That password is incorrect")
+        return True  # Signal success for main function
+    # print("That password is incorrect")  # And comment out the failed print message
 
 # level_5_pw_check()
 
 for i in range(0xffff + 1):
-    i_in_str = '{:04x}'.format(i)  # lowercase, minimum length of 4
+    i_in_str = '{:04x}'.format(i)  # lowercase, minimum length of 4, 0000-ffff
     if level_5_pw_check(i_in_str):  # end earlier if found password
         break
 ```
 
 ~~I spend most of my time searching how to format the string and write this~~
+
+## Lesson learnt
+
+That password (key) size (65536 == 2^16) is very small and the loop just finish within a second in this machine.
+
+So ... this shows with large keysize is important against brute force.
