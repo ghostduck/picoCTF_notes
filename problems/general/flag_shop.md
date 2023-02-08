@@ -119,7 +119,7 @@ And the bug we can exploit is in these lines:
         account_balance = account_balance - total_cost;
 ```
 
-`total_cost` is signed integer. As long as we made the first bit of it `1`, it becomes a negative number. Minus a negative number would be a plus to the `account_balance`!
+`total_cost` is **signed** integer. As long as we made the first bit of it `1`, it becomes a negative number. Minus a negative number would be a plus to the `account_balance`!
 
 So we can just craft the `number_flags` such that 900*`number_flags` would be 1000_0000_0001_0000_0000_0000_0000_0000 (Single 1, 10 0s, one 1, and 20 0s)
 
@@ -129,9 +129,11 @@ So we can just craft the `number_flags` such that 900*`number_flags` would be 10
 # Formating: 2,148,532,224
 >>> 2148532224 // 900
 2387258
->>> 0b1_0000_0000_0000_0000_0000  # 1 1, 20 0s
+>>> 0b0001_0000_0000_0000_0000_0000  # 1 1, 20 0s
 1048576
 ```
+
+### Running output
 
 ```text
 These knockoff Flags cost 900 each, enter desired quantity
