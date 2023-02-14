@@ -43,7 +43,7 @@ Round 5: No /* (really do it the hard way)
 
 ### Solution
 
-Round 2: username = admin, password = bocchi'<>'
+Round 2: username = `admin`, password = `bocchi'<>'`
 
 SQL statement:
 
@@ -53,8 +53,8 @@ SELECT * FROM users WHERE username='admin' AND password='bocchi'<>''
 -- <> is not equal for string, we compare empty string != some string
 ```
 
-Round 3: username = admin, password = 'IN(0)||'
-Round 4-5: username = ad'||'min, same password as above
+Round 3: username = `admin`, password = `'IN(0)||'`
+Round 4-5: username = `ad'||'min`, same password as above
 
 SQL statement:
 

@@ -51,7 +51,6 @@ def parse_header_ppm(f):
 def revert_aes_abc(aes_abc_data):
     blocks = [aes_abc_data[i * BLOCK_SIZE:(i+1) * BLOCK_SIZE] for i in range(len(aes_abc_data) / BLOCK_SIZE)]
     real_blocks = blocks[:]  # big trap 1: need to store the real bytes separately
-    # don't forget blocks in AES-ABC are already
     iv = blocks[0]
 
     for i in range(len(blocks) - 1):
