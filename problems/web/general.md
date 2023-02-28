@@ -79,6 +79,22 @@ $ curl 'https://caas.mars.picoctf.net/cowsay/gachiBASS;cat%20falg.txt'  # need t
 picoCTF{cow_flag}
 ```
 
+## Forbidden Paths
+
+So the webpage shares the files in `/usr/share/nginx/html/` and we input the file name so that it will show its content (just like print output from `cat filename`)
+
+If you enter an absolute path (starting with /, like `/flag.txt`), access will be denied.
+
+However, relative paths are not blocked ... so `/flag.txt` is the same as `../../../../flag.txt` if you are at `/usr/share/nginx/html/`.
+
+So we can get the flag by giving that relative path.
+
+```bash
+$ curl 'http://saturn.picoctf.net:55827/read.php' -X POST --data-raw 'filename=..%2F..%2F..%2F..%2Fflag.txt&read=' | grep -E -o picoCTF{.*?}
+
+picoCTF{the_forbidden_flag}
+```
+
 ## Download / Mirror the whole website (Search source)
 
 Reference: <https://alvinalexander.com/linux-unix/how-to-make-offline-mirror-copy-website-with-wget/>
