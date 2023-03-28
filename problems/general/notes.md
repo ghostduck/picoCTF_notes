@@ -30,7 +30,7 @@ find files/ -name uber-secret.txt
 ```bash
 $ echo -n "gachiBASS"  | md5sum  # This is parsing really just "gachiBASS"
 21b1f2a39d204ea9ad743d6aff8c09c5  -
-$ echo "gachiBASS" | md5sum   # This is parsing "gachiBASS\n", probably not the we want
+$ echo "gachiBASS" | md5sum   # This is parsing "gachiBASS\n", probably not what we want
 cdea510f0c0bf87a7bd3ea7657162b41  -
 ```
 
@@ -48,6 +48,16 @@ print()
 - In Hex (not writing 0x): 70 69 63 6f 43 54 46 7b 5f 7d
 
 - The above is for Big endian. When it is Little endian, the pattern for `pico` will be 6f 63 69 70
+
+- If you have a byte plaintext file like `706963...` which is like the flag, you cat just pipe it to `xxd -r -p` to show its ASCII content.
+
+```bash
+$ cat flag.txt
+7069636f43
+
+$ cat flag.txt | xxd -r -p
+picoC
+```
 
 - picoCTF is generous to open some servers/containers for us to play around with, connect to them using `ncat`
 
