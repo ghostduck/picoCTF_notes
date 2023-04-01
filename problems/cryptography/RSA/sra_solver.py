@@ -39,6 +39,8 @@ def parse_factors():
 
     with open("factors.txt") as f:
         for line in f:
+            # Actually can use options to control the output format so we can skip parsing
+            # The perfect option is: 0 digits per group, untick verbose mode and untick pretty print
             # Sample input for this line parse
             # 5823582 8278421659 2557489935 4572143890 7327043968 (47 digits)
             # 8914634736 1831653537 1390922124
@@ -47,7 +49,7 @@ def parse_factors():
 
             factor = int(line)
             if factor < (2**(8*PLAINTEXT_LENGTH+1))-1 : # 2^129 -1
-                factors.append(int(line))
+                factors.append(factor)
 
     factors.sort()
     return factors
@@ -59,9 +61,10 @@ def find_n_from_factors(de,c,factors):
     for p in factors:
         for q in factors[::-1]:
             # double pointer search: p from start and q from end
-            n = (p+1)*(q+1)
             if p > q:
                 break
+
+            n = (p+1)*(q+1)
             #print(p+1, q+1)
             if n > c and verify_n(de, n, c):
                 npq = (n, p+1, q+1)

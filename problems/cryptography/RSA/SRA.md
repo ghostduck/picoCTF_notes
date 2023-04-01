@@ -165,8 +165,6 @@ By running a smaller example, I found something ...
 ```text
 Sample input
 
-```txt
-
 # real question
 # Set 1
 c = 1146568782252725017361183076550651612797135094478738648142497636283811770943
