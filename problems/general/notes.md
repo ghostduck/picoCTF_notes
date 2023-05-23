@@ -71,6 +71,18 @@ The output can be piped. From the question ["plumbing"](https://play.picoctf.org
 nc jupiter.challenges.picoctf.org 14291 | grep "picoCTF{"
 ```
 
+- For shells without `cat` and `ls` (picoCTF 2023 Specialer)
+
+Reference: <https://jarv.org/posts/cat-without-cat/>
+
+We can still use Tabs to check for files/directories, or `echo *` to show file names (as `ls`).
+
+Use `echo "$(<file.txt)"` as `cat file.txt`. Note that without the quotes(`""`) all newlines in the file will disappear.
+
+> Explanation of this syntax: This syntax $(<file.txt) may look a bit strange, what you are doing is command substitution, where the contents of file.txt are sent to STDIN which is then echo’d as STDOUT.
+
+These can be useful in some very lightweight container environments.
+
 - If I want to use some Python libraries to help to reduce manual works:
 
 ```bash
